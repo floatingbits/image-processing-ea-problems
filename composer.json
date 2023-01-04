@@ -1,0 +1,33 @@
+{
+    "name": "floatingbits/image-processing-ea-problems",
+    "description": "A library providing image processing related problems to be solved by floatingbits' EvolutionaryAlgorithm. These \"problems\" are to be seen as rather artistic than mathematical or practical.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Floatingbits\\ImageProcessingEaProblems\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Soeren Parton",
+            "email": "mail@floatingbitsmedia.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "floatingbits/evolutionary-algorithm": "dev-main",
+        "ext-imagick": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.9"
+    },
+    "repositories": [
+        
+        {
+            "type": "vcs",
+            "url": "https://github.com/floatingbits/evolutionary-algorithm",
+            "no-api": true
+        }
+    ]
+}
