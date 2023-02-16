@@ -1,3 +1,4 @@
 /vendor/
 /.idea/
 /example/*.png
+/example/output/*
