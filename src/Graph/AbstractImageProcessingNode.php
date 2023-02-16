@@ -21,6 +21,12 @@ abstract class AbstractImageProcessingNode implements NodeInterface
         $this->outgoingLinks = new \SplObjectStorage();
     }
 
+    public function __clone(): void
+    {
+        $this->incomingLinks = clone $this->incomingLinks;
+        $this->outgoingLinks = clone $this->outgoingLinks;
+    }
+
     /**
      * @var T1
      */

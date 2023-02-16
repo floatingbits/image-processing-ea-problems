@@ -4,21 +4,38 @@ namespace Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modi
 
 use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\AbstractDrawAction;
 
-class OriginCoordinateModifier extends AbstractModifier
+class OriginCoordinateModifier extends AbstractModifierDecorator
 {
     private float $deltaX;
     private float $deltaY;
-    public function __construct($deltaX, $deltaY)
+    public function __construct($deltaX, $deltaY, AbstractModifierDecorator $decoratedModifier = null)
     {
+        parent::__construct($decoratedModifier);
         $this->deltaX = $deltaX;
         $this->deltaY = $deltaY;
     }
 
     public function getModifiedVersion(): AbstractDrawAction
     {
-        $this->drawAction->setRelativeX($this->drawAction->getRelativeX() + $this->deltaX);
-        $this->drawAction->setRelativeY($this->drawAction->getRelativeY() + $this->deltaY);
+        $this->drawAction = parent::getModifiedVersion();
+        $this->drawAction->setRelativeX($this->assureRange($this->drawAction->getRelativeX() + $this->deltaX));
+        $this->drawAction->setRelativeY($this->assureRange($this->drawAction->getRelativeY() + $this->deltaY));
         return $this->drawAction;
+    }
+
+    private function assureRange(float $number): float {
+        if ($number < 0) {
+            $number = -$number;
+        }
+        if ($number <= 1) {
+            return $number;
+        }
+        //Mirror with 1 as axis
+        $aux = $number;
+        while ( $aux > 1 ) {
+            $aux--;
+        }
+        return 1 - $aux;
     }
 
     /**

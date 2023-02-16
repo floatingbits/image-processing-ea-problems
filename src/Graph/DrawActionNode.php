@@ -9,7 +9,13 @@ use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\AbstractDr
  */
 class DrawActionNode extends AbstractImageProcessingNode
 {
-    public ?AbstractDrawAction $drawAction = null;
+    private ?AbstractDrawAction $drawAction = null;
+
+    public function __clone(): void
+    {
+        parent::__clone();
+        $this->drawAction = clone $this->drawAction;
+    }
 
     /**
      * @return AbstractDrawAction|null
