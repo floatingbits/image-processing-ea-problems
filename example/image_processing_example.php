@@ -2,46 +2,39 @@
 require_once '../vendor/autoload.php';
 use FloatingBits\EvolutionaryAlgorithm\Graph\Tree\TreeGraph;
 use Floatingbits\ImageProcessingEaProblems\Graph\DirectedImageProcessingLink;
-$rootNode = new \Floatingbits\ImageProcessingEaProblems\Graph\DrawActionNode();
-$secondNode = new \Floatingbits\ImageProcessingEaProblems\Graph\DrawActionNode();
-$thirdNode = new \Floatingbits\ImageProcessingEaProblems\Graph\DrawActionNode();
 
-$imageProcessor = new \Floatingbits\ImageProcessingEaProblems\ImageProcessing\Imagick\ImagickImageProcessor();
-$drawAction = new \Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\CircleDrawAction();
-$drawAction->setFillColor(new \Floatingbits\ImageProcessingEaProblems\ImageProcessing\Color(50,200,200));
-$drawAction->setStrokeColor(new \Floatingbits\ImageProcessingEaProblems\ImageProcessing\Color(50,40,30));
-$drawAction->setRelativeX(0.5);
-$drawAction->setRelativeY(0.5);
-$drawAction->setRelativeRadius(0.2);
-$rootNode->setDrawAction($drawAction);
+$populationSize = 5;
+$generator = new \Floatingbits\ImageProcessingEaProblems\Specimen\ImageGenerationSpecimenGenerator();
+$specimenCollection = $generator->generateSpecimen($populationSize);
+$selector = new \FloatingBits\EvolutionaryAlgorithm\Selection\SimpleSelector(0.5);
+$mutator = new \FloatingBits\EvolutionaryAlgorithm\Mutation\CollectionMutator(
+  new \Floatingbits\ImageProcessingEaProblems\Mutation\DrawActionModifierDeltaMutator(
+      new \Floatingbits\ImageProcessingEaProblems\Randomizer\DefaultDrawActionModifierRandomizer(),
+  ),
+  new \FloatingBits\EvolutionaryAlgorithm\Randomizer\IntRandomizer(),
+  1
+);
+$mutator2 = new \FloatingBits\EvolutionaryAlgorithm\Mutation\CollectionMutator(
+    new \FloatingBits\EvolutionaryAlgorithm\Mutation\Graph\SwitchBranchesTreeGraphMutator(
+      new \FloatingBits\EvolutionaryAlgorithm\Randomizer\TreeGraphLinkRandomizer(),
+      new \FloatingBits\EvolutionaryAlgorithm\Randomizer\TreeGraphNodeRandomizer()
+    ),
+    new \FloatingBits\EvolutionaryAlgorithm\Randomizer\IntRandomizer(),
+    1
+);
+for ($i = 0; $i< 200; $i++) {
+    print "Generation: " . $i. "\n";
+    foreach ($specimenCollection as $key => $specimen) {
+        print "Specimen: " . $key. "\n";
+        $phenotype = new \Floatingbits\ImageProcessingEaProblems\Phenotype\TreeGraphImageProcessorPhenotype($specimen->getGenotype());
+        $image = $phenotype->getImage();
+        $image->writeImage('output/' . $i . '_'. $key . '.png');
+        $specimen->setEvaluation(new \FloatingBits\EvolutionaryAlgorithm\Evaluation\SimpleFitness(mt_rand()));
+    }
+    $specimenCollection = $selector->select($specimenCollection);
+    $specimenCollection = $mutator->replenish($specimenCollection, $populationSize - 1);
+    $specimenCollection = $mutator2->replenish($specimenCollection, $populationSize);
+}
 
-$modifier = new \Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\OriginCoordinateModifier(0.1,0.1);
-$directedLink = new DirectedImageProcessingLink();
-$directedLink->setModifier($modifier);
-$directedLink->setStartNode($rootNode);
-$directedLink->setEndNode($secondNode);
-$rootNode->addOutgoingLink($directedLink);
-
-$directedLink = new DirectedImageProcessingLink();
-$directedLink->setModifier($modifier);
-$directedLink->setStartNode($secondNode);
-$directedLink->setEndNode($thirdNode);
-
-$secondNode->addOutgoingLink($directedLink);
-
-
-
-$image = new \Imagick();
-$image->newImage(200,200,new ImagickPixel('white'));
-
-$graph = new TreeGraph($rootNode);
-print $graph->countLinks();
-$callable = new \Floatingbits\ImageProcessingEaProblems\Graph\ImageProcessingLinkCallable();
-$callable->setImage($image);
-$callable->setImageProcessor($imageProcessor);
-
-$graph->iterateUp($callable);
-
-$image->writeImage('hello.png');
 
 
