@@ -23,6 +23,7 @@
         "phpstan/phpstan": "^1.9"
     },
     "repositories": [
+    
         {
             "type": "vcs",
             "url": "https://github.com/floatingbits/evolutionary-algorithm",

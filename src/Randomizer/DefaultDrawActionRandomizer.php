@@ -39,7 +39,7 @@ class DefaultDrawActionRandomizer implements DrawActionRandomizerInterface
 
     private function configureCircleDrawAction(CircleDrawAction $action) {
         $this->configureCommon($action);
-        $action->setRelativeRadius($this->coordinateRandomizer->randomFloat()/3);
+        $action->setRelativeRadius($this->coordinateRandomizer->randomFloat()/2);
     }
     private function configureCommon(AbstractDrawAction $action) {
         $action->setRelativeX($this->coordinateRandomizer->randomFloat());

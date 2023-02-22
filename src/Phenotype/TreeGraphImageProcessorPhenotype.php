@@ -30,7 +30,9 @@ class TreeGraphImageProcessorPhenotype implements ImagePhenotypeInterface
     public function getImage()
     {
         $image = new Imagick();
+
         $image->newImage(200,200,new \ImagickPixel('white'));
+        $image->setImageFormat('png');
         $imageProcessor = new ImagickImageProcessor();
         /**
          * @var ImageProcessingLinkCallable<Imagick>

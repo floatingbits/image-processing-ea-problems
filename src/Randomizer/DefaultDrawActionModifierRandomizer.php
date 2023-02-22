@@ -16,6 +16,7 @@ use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\A
 use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\FillColorModifier;
 use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\ModifierEnum;
 use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\OriginCoordinateModifier;
+use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\RadiusModifier;
 use Floatingbits\ImageProcessingEaProblems\ImageProcessing\DrawAction\Modifier\StrokeColorModifier;
 
 class DefaultDrawActionModifierRandomizer implements DrawActionModifierRandomizerInterface
@@ -23,10 +24,12 @@ class DefaultDrawActionModifierRandomizer implements DrawActionModifierRandomize
     private IntRandomizer $modifierClassRandomizer;
 
     private FloatRandomizerInterface $coordinateRandomizer;
+    private FloatRandomizerInterface $radiusRandomizer;
     public function __construct()
     {
         $this->modifierClassRandomizer = new IntRandomizer();
-        $this->coordinateRandomizer = new FloatRandomizer(0.1);
+        $this->coordinateRandomizer = new FloatRandomizer(0.8, -0.8);
+        $this->radiusRandomizer = new FloatRandomizer(0.02, -0.02);
     }
 
     public function getRandomDrawActionModifier(): AbstractModifierDecorator
@@ -58,6 +61,15 @@ class DefaultDrawActionModifierRandomizer implements DrawActionModifierRandomize
                     mt_rand(-127,127),
                     mt_rand(-127,127),
                     mt_rand(-127,127),
+                    new OriginCoordinateModifier(
+                        $this->coordinateRandomizer->randomFloat(),
+                        $this->coordinateRandomizer->randomFloat()
+                    )
+                );
+                break;
+            case ModifierEnum::RadiusModifier:
+                $modifier = new RadiusModifier(
+                    $this->radiusRandomizer->randomFloat(),
                     new OriginCoordinateModifier(
                         $this->coordinateRandomizer->randomFloat(),
                         $this->coordinateRandomizer->randomFloat()

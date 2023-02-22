@@ -7,4 +7,5 @@ enum ModifierEnum
     case OriginCoordinateModifier;
     case FillColorModifier;
     case StrokeColorModifier;
+    case RadiusModifier;
 }

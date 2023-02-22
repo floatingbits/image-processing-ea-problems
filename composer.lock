@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/floatingbits/evolutionary-algorithm",
-                "reference": "8b0112af08d7c1d069c2df013b712fb0f9cae2b5"
+                "reference": "db82fc0270efc46cc5a09b0bb6c69771091e8b43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/floatingbits/evolutionary-algorithm/zipball/8b0112af08d7c1d069c2df013b712fb0f9cae2b5",
-                "reference": "8b0112af08d7c1d069c2df013b712fb0f9cae2b5",
+                "url": "https://api.github.com/repos/floatingbits/evolutionary-algorithm/zipball/db82fc0270efc46cc5a09b0bb6c69771091e8b43",
+                "reference": "db82fc0270efc46cc5a09b0bb6c69771091e8b43",
                 "shasum": ""
             },
             "require-dev": {
@@ -43,7 +43,7 @@
                 }
             ],
             "description": "A php implementation of evolutionary algorithms",
-            "time": "2023-02-16T12:15:42+00:00"
+            "time": "2023-02-22T08:49:53+00:00"
         }
     ],
     "packages-dev": [
@@ -360,12 +360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "e4e424021a9a9ec9f4c06572c55feb09737d1f8e"
+                "reference": "34881e639fcadb85cbca23dfae27afbb783102ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e4e424021a9a9ec9f4c06572c55feb09737d1f8e",
-                "reference": "e4e424021a9a9ec9f4c06572c55feb09737d1f8e",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/34881e639fcadb85cbca23dfae27afbb783102ac",
+                "reference": "34881e639fcadb85cbca23dfae27afbb783102ac",
                 "shasum": ""
             },
             "require": {
@@ -412,7 +412,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-15T20:23:03+00:00"
+            "time": "2023-02-22T06:07:59+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -420,12 +420,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "8083be52c6f5ba5a48eafa154e0aeefd96bda098"
+                "reference": "40b36fea5d4309a3181538b8540f66afcca8282c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8083be52c6f5ba5a48eafa154e0aeefd96bda098",
-                "reference": "8083be52c6f5ba5a48eafa154e0aeefd96bda098",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/40b36fea5d4309a3181538b8540f66afcca8282c",
+                "reference": "40b36fea5d4309a3181538b8540f66afcca8282c",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +489,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-11T08:53:26+00:00"
+            "time": "2023-02-21T09:38:09+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -738,12 +738,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4e6f3c050b54192d0a28c6f314a3567c00a7d017"
+                "reference": "c5e3ee5a497fc2d5a52dbe0c12e20487c924e2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4e6f3c050b54192d0a28c6f314a3567c00a7d017",
-                "reference": "4e6f3c050b54192d0a28c6f314a3567c00a7d017",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c5e3ee5a497fc2d5a52dbe0c12e20487c924e2d1",
+                "reference": "c5e3ee5a497fc2d5a52dbe0c12e20487c924e2d1",
                 "shasum": ""
             },
             "require": {
@@ -832,7 +832,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-14T15:49:39+00:00"
+            "time": "2023-02-21T10:00:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",
